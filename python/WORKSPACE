@@ -11,5 +11,5 @@ load("@rules_python//python:pip.bzl", "pip_install")
 # requirements.txt.
 pip_install(
    name = "depends",
-   requirements = ":requirements.txt",
+   requirements = "//:requirements.txt",
 )
