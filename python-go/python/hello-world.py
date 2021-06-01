@@ -16,5 +16,10 @@ def elapsed():
 def root():
     return "Hello World (Python)! (up %s)\n" % elapsed()
 
+@app.route('/<num>')
+def square(num):
+    value = str(int(num) * int(num))
+    return "Squared {} -> {}\n".format(num, value)
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)

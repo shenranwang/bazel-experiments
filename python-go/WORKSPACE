@@ -10,7 +10,6 @@ load("@rules_python//python:pip.bzl", "pip_install")
 # Create a central repo that knows about the dependencies needed for
 # requirements.txt.
 pip_install(
-   name = "depends",
-   requirements = "//:requirements.txt",
-   visibility = ["//src:__pkg__"],
+    name = "pip",
+    requirements = "//:requirements.txt",
 )

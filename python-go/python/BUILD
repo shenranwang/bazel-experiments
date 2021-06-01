@@ -5,11 +5,9 @@
 # BUILD files -- you should instead use the requirement() 
 # function defined in the central repo's //:requirements.bzl 
 # file. This function maps a pip package name to a label.
-load("@depends//:requirements.bzl", "requirement")
+load("@pip//:requirements.bzl", "requirement")
 
-# load("@rules_python//python/pip_install:requirements.bzl", "compile_pip_requirements")
-
-load("@rules_python//python:defs.bzl", "py_binary")
+load("@rules_python//python:defs.bzl", "py_binary", "py_test")
 
 py_library(
     name = "hello_world_deps",
@@ -19,12 +17,13 @@ py_library(
 )
 
 py_binary(
-  name = "hello-world",
-  srcs = ["hello-world.py"],
-  # deps = [ requirement("flask") ],
+    name = "hello-world",
+    srcs = ["hello-world.py"],
+    deps = ["hello_world_deps"],
 )
 
-# Check that our compiled requirements are up-to-date
-# compile_pip_requirements(
-#     name = "requirements",
-# )
+py_test(
+    name = "test",
+    srcs = ["test.py"],
+    deps = [":hello-world"],
+)
