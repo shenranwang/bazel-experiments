@@ -12,4 +12,5 @@ load("@rules_python//python:pip.bzl", "pip_install")
 pip_install(
    name = "depends",
    requirements = "//:requirements.txt",
+   visibility = ["//src:__pkg__"],
 )
